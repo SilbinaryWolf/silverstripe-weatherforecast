@@ -1,5 +1,5 @@
 {
-	"name": "silverstripe-australia/silverstripe-weatherforecast",
+	"name": "nyeholt/silverstripe-weatherforecast",
 	"description": "Retrieve a weather forecast (uses openweather)",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "weather", "forecast"],
