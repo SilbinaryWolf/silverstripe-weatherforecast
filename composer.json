@@ -14,9 +14,9 @@
 		"silverstripe/framework": "~3.1"
 	},
 	"extra": {
+		"installer-name": "weatherforecast",
 		"branch-alias": {
-			"dev-master": "1.0.x-dev",
-			"installer-name": "weatherforecast"
+			"dev-master": "1.0.x-dev"
 		}
 	}
 }
