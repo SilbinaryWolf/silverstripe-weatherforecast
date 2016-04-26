@@ -1,5 +1,5 @@
 {
-	"name": "silverstripe-australia/weatherforecast",
+	"name": "silverstripe-australia/silverstripe-weatherforecast",
 	"description": "Retrieve a weather forecast (uses openweather)",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "weather", "forecast"],
@@ -15,7 +15,8 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "1.0.x-dev"
+			"dev-master": "1.0.x-dev",
+			"installer-name": "weatherforecast"
 		}
 	}
 }

@@ -18,6 +18,10 @@ Injector:
 From your code, call the following. The LocationID will need to be looked up from the openweather site.
 
 ```
-Requirements::css('openweather/owfonts/css/owfont-regular.min.css');
+Requirements::css('weatherforecast/owfonts/css/owfont-regular.min.css');
 $forecast = singleton('OpenWeatherService')->forecastFor($locationID);
 ```
+
+## PLEASE NOTE 
+
+The requirements of OpenWeatherMaps mean you _must_ provide attribution on your site for using the service. 
