@@ -6,7 +6,8 @@
 class OpenWeatherService {
     public $endpoint = 'http://api.openweathermap.org';
     public $key = '';
-    
+    public $units;
+
     public function forecastFor($location) {
         $params = array(
             'appid' => $this->key,
@@ -17,6 +18,9 @@ class OpenWeatherService {
         } else {
             $params['q'] = $location;
         }
+		if ($this->units == 'metric' || $this->units == 'imperial'){
+			$params['units'] = $this->units;
+		}
         
         $service = new RestfulService($this->endpoint, 1800);
         $service->setQueryString($params);
