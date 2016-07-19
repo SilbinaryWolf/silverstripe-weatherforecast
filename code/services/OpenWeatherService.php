@@ -4,9 +4,22 @@
  * @author marcus
  */
 class OpenWeatherService {
+    /** 
+     * @var string
+     */
     public $endpoint = 'http://api.openweathermap.org';
+
+    /** 
+     * @var string
+     */
     public $key = '';
-    public $units;
+
+    /** 
+     * Default to Celsius.
+     *
+     * @var string
+     */
+    public $units = 'metric';
 
     public function forecastFor($location) {
         $params = array(
