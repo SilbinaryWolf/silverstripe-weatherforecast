@@ -1,7 +1,0 @@
----
-Name: openweather-config
----
-Injector:
-  OpenWeatherService:
-    properties:
-      key: oawne

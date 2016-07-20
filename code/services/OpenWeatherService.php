@@ -12,7 +12,7 @@ class OpenWeatherService {
     /** 
      * @var string
      */
-    public $key = '';
+    public $key = 'oawne';
 
     /** 
      * Default to Celsius.
@@ -67,11 +67,13 @@ class OpenWeatherService {
         //
         // @source https://openweathermap.desk.com/customer/portal/questions/16305313-units-parameter-doesn-t-work-with-http-api-openweathermap-org-data-2-5-station-urls-
         //
+        $convertFromKelvins = false;
         if ($forecast === null)
         {
             $fallbackParams = $params;
             unset($fallbackParams['units']);
             $data = $this->request('/data/2.5/forecast', $fallbackParams);
+            $convertFromKelvins = true;
             if ($data && is_array($data->list) && $data->list) {
                 $forecast = $data->list[0];
             }
@@ -93,7 +95,7 @@ class OpenWeatherService {
                 }
             }
             $forecast->main->temp_max = $max;
-            if ($units)
+            if ($convertFromKelvins && $units)
             {
                 switch ($units) 
                 {
@@ -120,7 +122,6 @@ class OpenWeatherService {
         if (!$data || !is_array($data->list) || !$data->list) {
             return null;
         }
-
         $forecast = $data->list[0];
         $forecast->name = isset($data->city) ? $data->city->name : '';
 
@@ -163,15 +164,16 @@ class OpenWeatherService {
         
         $response = $service->request($apiURLPostfix);
         if ($response->isError()) {
+            user_error(__CLASS__.' error with response. -- '.$response->getBody(), E_USER_WARNING);
             return null;
         }
         $data = json_decode($response->getBody());
         if (!isset($data->list)) {
-            user_error(__CLASS__.' is missing list property from json feed.', E_USER_ERROR);
+            user_error(__CLASS__.' is missing list property from json feed.', E_USER_WARNING);
             return null;
         }
         if (!is_array($data->list)) {
-            user_error(__CLASS__.' expected "list" property from json feed to be an array.', E_USER_ERROR);
+            user_error(__CLASS__.' expected "list" property from json feed to be an array.', E_USER_WARNING);
             return null;
         }
         //$data->response = $response; // Debug
